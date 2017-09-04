@@ -19,14 +19,17 @@ export class Criterium{
         this.requiredFor = requiredFor;
     }
 
-    toggle(){
+    toggle( forceState = undefined ){
         // update this
-        this.result = !this.result;
+        if (typeof( forceState ) != 'undefined' )
+            this.result = forceState;
+        else
+            this.result = !this.result;
 
         // update dependencies, if any
         if ( !this.result && this.requiredFor)
             for ( let dependant of this.requiredFor )
-                dependant.result = false;                
+                dependant.toggle( false );                
     }
 }
 

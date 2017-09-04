@@ -10,11 +10,23 @@ export class Criterium{
     test: string
     result?: boolean
     key?: string
+    requiredFor?: Criterium[]
 
-    constructor( test: string, key?: string ){
+    constructor( test: string, key?: string, requiredFor?: Criterium[] ){
         this.test = test;
         this.result = true;
         this.key = key;
+        this.requiredFor = requiredFor;
+    }
+
+    toggle(){
+        // update this
+        this.result = !this.result;
+
+        // update dependencies, if any
+        if ( !this.result && this.requiredFor)
+            for ( let dependant of this.requiredFor )
+                dependant.result = false;                
     }
 }
 

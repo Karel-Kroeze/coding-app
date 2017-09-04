@@ -17,10 +17,6 @@ export class CodingComponent implements OnInit {
     criteria: Criterium[];
     @Input() status: StatusComponent;
     savePending: boolean = true;
-
-    toggle( criterium: Criterium ): void {
-        criterium.result = !criterium.result;
-    }
         
     @HostListener('window:keydown', ['$event'])
     keyboardInput(event: KeyboardEvent): void {
@@ -31,7 +27,7 @@ export class CodingComponent implements OnInit {
         // otherwise, loop over our criteria to see if the key matches any criterium.
         for ( let criterium of this.criteria )
             if ( event.key === criterium.key )
-                return this.toggle( criterium );
+                return criterium.toggle();
         
         // well, that was about it...
         console.log( "No binding for KeyoardEvent;", event );
@@ -60,15 +56,22 @@ export class CodingComponent implements OnInit {
             this.hypothesis = res;
             setTimeout( () => { this.savePending = false; }, 500 );
         }); 
+
+        let manipulationCriterium = new Criterium("manipulation", "r");
+        let qualifiedCriterium = new Criterium("qualified", "t");
+        let CVSCriterium = new Criterium("CVS", "y");
+        let SyntaxCriterium = new Criterium("Syntax", "e", [manipulationCriterium,qualifiedCriterium,CVSCriterium]);
+        let VariablesCriterium = new Criterium("Variables", "q", [SyntaxCriterium] );
+        let ModifierCriterium = new Criterium("Modifier", "w", [SyntaxCriterium] );
+
         this.criteria = [
-            new Criterium("Variables", "q"),
-            new Criterium("Modifier", "w"),
-            new Criterium("Syntax", "e"),
-            new Criterium("manipulation", "r"),
-            new Criterium("qualified", "t"),
-            new Criterium("CVS", "y")
+            VariablesCriterium,
+            ModifierCriterium,
+            SyntaxCriterium,
+            manipulationCriterium,
+            qualifiedCriterium,
+            CVSCriterium
         ];
         this.status.update();
     }
-
 }

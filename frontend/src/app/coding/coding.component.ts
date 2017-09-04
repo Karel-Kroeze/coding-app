@@ -63,7 +63,10 @@ export class CodingComponent implements OnInit {
         this.criteria = [
             new Criterium("Variables", "q"),
             new Criterium("Modifier", "w"),
-            new Criterium("Syntax", "e")
+            new Criterium("Syntax", "e"),
+            new Criterium("manipulation", "r"),
+            new Criterium("qualified", "t"),
+            new Criterium("CVS", "y")
         ];
         this.status.update();
     }

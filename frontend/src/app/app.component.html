@@ -1,0 +1,5 @@
+<div class="container margin-top">
+    <!-- provide a reference of status to coding, the simple (hacky) way -->
+    <app-status #status></app-status>
+    <app-coding *ngIf="status.checkedIn" [status]="status"></app-coding>
+</div>

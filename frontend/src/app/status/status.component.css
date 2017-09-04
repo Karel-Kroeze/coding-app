@@ -1,0 +1,12 @@
+.check-in-input {
+    max-width: 300px;
+}
+
+.margin-top-20px {
+    margin-top: 20px;
+}
+
+.status .progress {
+    display: inline-flex;
+    width: calc(100% - 20px);
+}

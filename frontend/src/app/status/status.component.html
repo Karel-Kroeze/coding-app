@@ -1,0 +1,26 @@
+<div class="status card">
+    <div *ngIf="status && checkedIn">
+        <i class="fa fa-user" title="Checked in as {{coder}}"></i>
+        <div class="progress" title={{summary}}>
+            <div class="progress-bar bg-primary" [ngStyle]="widthMultiple"></div>
+            <div class="progress-bar bg-success" [ngStyle]="widthOne"></div>
+        </div>
+    </div>
+    <div *ngIf="!checkedIn" class="margin-top-20px">
+        <label class="sr-only" for="coder">Check in as:</label>  
+        <div class="input-group float-left check-in-input">
+            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+            <input type="text" 
+                   class="form-control" 
+                   id="coder" 
+                   name="coder" 
+                   placeholder="Name" 
+                   [(ngModel)]="coder">
+        </div>
+        <button type="button" 
+                class="btn btn-primary float-right col-md-2"
+                (click)="checkIn()">
+                Check in
+        </button>
+    </div>
+</div>

@@ -5,6 +5,10 @@ const fs = require('mz/fs');
 const path = require('path');
 const glob = require('glob-fs')();
 
+function nodir(file){
+  if (fs.)
+}
+
 let mongoCollection = process.env.MONGO_COLLECTION || "coding";
 
 mongoose.connect(`mongodb://mongo/${mongoCollection}`);
@@ -215,7 +219,9 @@ router.post('/code', function( req, res, next ){
  * Read file contents from ../data/*.json and use them to create hypothesis entries and parser codings.
  */
 let seed = function(){
+  console.log( process.cwd() )
   return glob.readdirPromise( "./data/*.json" )
+      .then( files => { console.log( files ); return files })
       .then( 
         files => Promise.all( 
           files.map( 

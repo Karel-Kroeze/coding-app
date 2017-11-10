@@ -76,7 +76,7 @@ router.get('/seed', function( req, res, next) {
   Hypothesis.find()
     .then( contents => {
       if (contents.length){
-        console.log( contents, "db not empty" );
+        console.log( contents.length, "db not empty" );
         res.status( 418 );
         res.send( "db not empty" );
       } else {
@@ -225,27 +225,25 @@ router.post('/code', function( req, res, next ){
  * Read file contents from ../data/*.json and use them to create hypothesis entries and parser codings.
  */
 let seed = function(){
-  console.log( process.cwd() )
   return globPromise( "./data/*.json" )
       .then( files => { console.log( files ); return files })
-      .then( 
-        files => Promise.all( 
+      .then( files => { return Promise.all( 
           files.map( 
             file => fs.readFile( file, 'utf8' ) // read file
                       .then( JSON.parse )       // parse as JSON
                       .then( parseHypotheses )  // parse codes and store
-          )
-        ).then( countsArray => {
-          let COUNTS = { files: countsArray.length }
-          for ( let counts of countsArray ){
-            for ( let property in counts ){
-              if (!COUNTS[property]) COUNTS[property] = 0
-              COUNTS[property] += counts[property]
-            }
+          ) ) } )
+      .then( countsArray => {
+        let COUNTS = { files: countsArray.length }
+        for ( let counts of countsArray ){
+          for ( let property in counts ){
+            if (!COUNTS[property]) COUNTS[property] = 0
+            COUNTS[property] += counts[property]
           }
-          return COUNTS;
-        })
-      ) 
+        }
+        console.log( COUNTS )
+        return COUNTS;
+      }); 
 }
 
 function parseHypotheses( data ) {

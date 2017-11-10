@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const fs = require('mz/fs');
 const path = require('path');
-const glob = require('glob-fs');
+const glob = require('glob-fs')();
 
 let mongoCollection = process.env.MONGO_COLLECTION || "coding";
 

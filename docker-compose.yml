@@ -20,8 +20,6 @@ services:
     environment:
       - VIRTUAL_HOST=coding.karel-kroeze.nl
       - VIRTUAL_PORT=3000
-    ports:
-      - 3000:3000
     volumes:
       - ./data:/app/data
       - ./server/routes:/app/routes

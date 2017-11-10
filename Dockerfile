@@ -2,9 +2,10 @@ FROM node
 
 RUN mkdir /app
 WORKDIR /app
-RUN npm install -g nodemon
+RUN npm install -g yarn
+RUN yarn global add nodemon
 COPY ./server/package.json /app/package.json
-RUN npm install
+RUN yarn install
 
 COPY ./server/server.js /app/server.js
 COPY ./server/bin /app/bin

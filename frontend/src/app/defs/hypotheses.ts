@@ -8,15 +8,17 @@ export class Hypothesis{
 
 export class Criterium{
     test: string
+    name: string
     result?: boolean
     key?: string
     requiredFor?: Criterium[]
 
-    constructor( test: string, key?: string, requiredFor?: Criterium[] ){
+    constructor( test: string, key?: string, requiredFor?: Criterium[], name?: string ){
         this.test = test;
         this.result = true;
         this.key = key;
         this.requiredFor = requiredFor;
+        this.name = name || test;
     }
 
     toggle( forceState = undefined ){

@@ -57,12 +57,12 @@ export class CodingComponent implements OnInit {
             setTimeout( () => { this.savePending = false; }, 500 );
         }); 
 
-        let manipulationCriterium = new Criterium("manipulation", "r");
-        let qualifiedCriterium = new Criterium("qualified", "t");
-        let CVSCriterium = new Criterium("CVS", "y");
+        let manipulationCriterium = new Criterium("manipulation", "r", null, "Manipulation" );
+        let qualifiedCriterium = new Criterium("qualified", "t", null, "Qualified" );
+        let CVSCriterium = new Criterium("CVS", "y" );
         let SyntaxCriterium = new Criterium("Syntax", "e", [manipulationCriterium,qualifiedCriterium,CVSCriterium]);
-        let VariablesCriterium = new Criterium("Variables", "q", [SyntaxCriterium] );
-        let ModifierCriterium = new Criterium("Modifier", "w", [SyntaxCriterium] );
+        let VariablesCriterium = new Criterium("VariablesPresent", "q", [SyntaxCriterium], "Variables" );
+        let ModifierCriterium = new Criterium("ModifiersPresent", "w", [SyntaxCriterium], "Modifiers" );
 
         this.criteria = [
             VariablesCriterium,

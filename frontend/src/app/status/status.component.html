@@ -7,20 +7,21 @@
         </div>
     </div>
     <div *ngIf="!checkedIn" class="margin-top-20px">
-        <label class="sr-only" for="coder">Check in as:</label>  
-        <div class="input-group float-left check-in-input">
-            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-            <input type="text" 
-                   class="form-control" 
-                   id="coder" 
-                   name="coder" 
-                   placeholder="Name" 
-                   [(ngModel)]="coder">
-        </div>
-        <button type="button" 
-                class="btn btn-primary float-right col-md-2"
-                (click)="checkIn()">
-                Check in
-        </button>
+        <form action="">
+            <label class="sr-only" for="coder">Check in as:</label>  
+            <div class="input-group float-left check-in-input">
+                <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                <input type="text" 
+                    class="form-control" 
+                    id="coder" 
+                    name="coder" 
+                    placeholder="Name" 
+                    [(ngModel)]="coder">
+            </div>
+            <input type="submit" 
+                    class="btn btn-primary float-right col-md-2"
+                    (submit)="checkIn()"
+                    (click)="checkIn()" value="Check in" />
+        </form>
     </div>
 </div>

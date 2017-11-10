@@ -199,6 +199,17 @@ router.post('/code', function( req, res, next ){
             hypothesis.codes.push( codeRecord );            
             hypothesis.save();
 
+            // for each identical hypothesis, also add this code
+            Hypothesis.where( "hypothesis", hypothesis.hypothesis )
+                      .where( "_id" ).ne( hypothesis._id )
+              .then( identicalHypotheses => {
+                console.log( identicalHypotheses );
+                identicalHypotheses.map( identical => {
+                  identical.codes.push( codeRecord );
+                  identical.save();
+                })
+              })
+
             // create and attach criteria
             for ( let criterium of req.body.criteria ){
                 let criteriumRecord = new Criterium({

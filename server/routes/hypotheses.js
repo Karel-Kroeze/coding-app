@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const fs = require('mz/fs');
 const path = require('path');
+const glob = require('glob-fs');
 
 let mongoCollection = process.env.MONGO_COLLECTION || "coding";
 
@@ -211,58 +212,75 @@ router.post('/code', function( req, res, next ){
 })
 
 /**
- * Read file contents from ../data/seed.json and use them to create hypothesis entries and parser codings.
+ * Read file contents from ../data/*.json and use them to create hypothesis entries and parser codings.
  */
 let seed = function(){
-    return fs.readFile( path.join( ".", "data", "seed.json" ), 'utf-8')
-    .then( JSON.parse )
-    .catch( console.error )
-    .then( data => {
-        let counts = {
-            hypotheses: 0,
-            snapshots: 0,
-            criteria: 0
-        }
-
-        for ( let id in data ){
-            counts.hypotheses++;
-
-            let set = data[id];
-            let actor = set.actor.displayName;
-            for ( let snapshot of set.snapshots ){
-                // create hypothesis object
-                let hypothesisRecord = new Hypothesis({
-                    _hypothesisId: id,
-                    actor: actor,
-                    hypothesis: snapshot.text,
-                    reason: snapshot.reason
-                });
-
-                // create parser code
-                let parserCodeRecord = new Code({
-                    coder: "Parser"
-                });
-                hypothesisRecord.codes.push( parserCodeRecord );
-
-                // create criteria codeSchema
-                for ( let criterium of snapshot.code ){
-                    let criteriumRecord = new Criterium({
-                        test: criterium.test,
-                        result: criterium.status
-                    });
-                    parserCodeRecord.results.push( criteriumRecord );
-                    criteriumRecord.save();
-                    counts.criteria++;
-                }
-
-                parserCodeRecord.save();
-                hypothesisRecord.save();
-                counts.snapshots++;
+  return glob.readdirPromise( "./data/*.json" )
+      .then( 
+        files => Promise.all( 
+          files.map( 
+            file => fs.readFile( file, 'utf8' ) // read file
+                      .then( JSON.parse )       // parse as JSON
+                      .then( parseHypotheses )  // parse codes and store
+          )
+        ).then( countsArray => {
+          let COUNTS = { files: countsArray.length }
+          for ( let counts of countsArray ){
+            for ( let property in counts ){
+              COUNTS[property] += counts[property]
             }
-        }
-        return counts;
-    })
+          }
+          return COUNTS;
+        })
+      ) 
 }
+
+function parseHypotheses( data ) {
+  let counts = {
+    hypotheses: 0,
+    snapshots: 0,
+    criteria: 0
+  }
+
+  for ( let id in data ){
+      counts.hypotheses++;
+
+      let set = data[id];
+      let actor = set.actor.displayName;
+      for ( let snapshot of set.snapshots ){
+          // create hypothesis object
+          let hypothesisRecord = new Hypothesis({
+              _hypothesisId: id,
+              actor: actor,
+              hypothesis: snapshot.text,
+              reason: snapshot.reason
+          });
+
+          // create parser code
+          let parserCodeRecord = new Code({
+              coder: "Parser"
+          });
+          hypothesisRecord.codes.push( parserCodeRecord );
+
+          // create criteria codeSchema
+          for ( let criterium of snapshot.code ){
+              let criteriumRecord = new Criterium({
+                  test: criterium.test,
+                  result: criterium.status
+              });
+              parserCodeRecord.results.push( criteriumRecord );
+              criteriumRecord.save();
+              counts.criteria++;
+          }
+
+          parserCodeRecord.save();
+          hypothesisRecord.save();
+          counts.snapshots++;
+      }
+  }
+  return counts;
+}
+
 
 module.exports = router;
 

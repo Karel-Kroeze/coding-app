@@ -1,0 +1,27 @@
+version: '2'
+networks:
+  personal:
+    driver: bridge
+    # external:
+    #   name: srv_personal
+
+services:
+  mongo:
+    image: mongo
+    # volumes:
+    #   - './data/db:/data/db'
+    networks:
+      - personal
+
+  server:
+    build: .
+    links: 
+      - mongo
+    ports: 
+      - 3000:3000
+    volumes:
+      - ./data:/app/data
+      - ./server/routes:/app/routes
+      - ./frontend/dist:/app/public
+    networks:
+      - personal

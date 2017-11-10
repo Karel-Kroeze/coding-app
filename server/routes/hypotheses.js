@@ -239,6 +239,7 @@ let seed = function(){
           let COUNTS = { files: countsArray.length }
           for ( let counts of countsArray ){
             for ( let property in counts ){
+              if (!COUNTS[property]) COUNTS[property] = 0
               COUNTS[property] += counts[property]
             }
           }

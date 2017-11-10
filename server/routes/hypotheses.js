@@ -3,10 +3,16 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const fs = require('mz/fs');
 const path = require('path');
-const glob = require('glob-fs')();
+const glob = require('glob');
 
-function nodir(file){
-  if (fs.)
+function globPromise( pattern, options ){
+  return new Promise( (resolve, reject) => {
+    glob( pattern, options, (err, matches) => {
+      if (err)
+        return reject( err );
+      return resolve( matches );
+    })
+  })
 }
 
 let mongoCollection = process.env.MONGO_COLLECTION || "coding";
@@ -220,7 +226,7 @@ router.post('/code', function( req, res, next ){
  */
 let seed = function(){
   console.log( process.cwd() )
-  return glob.readdirPromise( "./data/*.json" )
+  return globPromise( "./data/*.json" )
       .then( files => { console.log( files ); return files })
       .then( 
         files => Promise.all( 

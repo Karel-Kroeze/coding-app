@@ -20,13 +20,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/core@4.3.6 MIT
+@angular/core@4.4.6 MIT
 
-@angular/http@4.3.6 MIT
+@angular/http@4.4.6 MIT
 
-@angular/forms@4.3.6 MIT
+@angular/forms@4.4.6 MIT
 
-zone.js@0.8.17 MIT
+zone.js@0.8.18 MIT
 The MIT License
 
 Copyright (c) 2016 Google, Inc.
@@ -73,9 +73,9 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-@angular/platform-browser@4.3.6 MIT
+@angular/platform-browser@4.4.6 MIT
 
-@angular/common@4.3.6 MIT
+@angular/common@4.4.6 MIT
 
 css-loader@0.28.7 MIT
 Copyright JS Foundation and other contributors

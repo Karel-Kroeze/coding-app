@@ -10,9 +10,9 @@ export class HypothesesService {
 
   apiPath = "api";
 
-  getHypothesis(): Promise<Hypothesis>{
+  getHypothesis( coder: string ): Promise<Hypothesis>{
       return this.http
-        .get( "api/hypothesis" )
+        .get( "api/hypothesis/" + coder )
         .toPromise()
         .then( response => { 
             console.log( "response received", response.json() );

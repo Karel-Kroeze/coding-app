@@ -132,8 +132,8 @@ router.get('/status', function( req, res, next ) {
                 break;
             }
         }
-        counts.percentOne = Math.round( counts.one / counts.total * 100) + "%";
-        counts.percentMultiple = Math.round( counts.multiple / counts.total * 100) + "%";
+        counts.percentOne = Math.round( counts.one / counts.total * 1000 ) / 10 + "%";
+        counts.percentMultiple = Math.round( counts.multiple / counts.total * 1000 ) / 10 + "%";
         res.json( counts );
     }).catch( err => {
         res.status( 500 );
@@ -160,10 +160,15 @@ router.get('/check/:id', function( req, res, next ){
       });
 });
 
-router.get('/hypothesis', function( req, res, next ){
+router.get('/hypothesis/:coder', function( req, res, next ){
+  console.log( req.params.coder );
     Hypothesis
       .find()
-      .sort( 'numberCodes' )
+      .populate({
+        path: "codes",
+        model: "Code"
+      })
+      .where( 'codes.coder' ).ne( req.params.coder )
       .limit( 10 )
       .exec()
       .then( docs => {

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HypothesesService } from '../hypotheses.service';
 import { Hypothesis, Criterium } from '../defs/hypotheses';
 import { StatusComponent } from '../status/status.component';
-import {HostListener} from '@angular/core';
+import { HostListener } from '@angular/core';
 
 @Component({
     selector: 'app-coding',
@@ -52,7 +52,7 @@ export class CodingComponent implements OnInit {
     }
 
     getNextHypothesis(): void {
-        this.hypothesesService.getHypothesis().then( res => {
+        this.hypothesesService.getHypothesis( this.status.coder ).then( res => {
             this.hypothesis = res;
             setTimeout( () => { this.savePending = false; }, 500 );
         }); 

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HypothesesService } from '../hypotheses.service';
-import { Hypothesis, Criterium } from '../defs/hypotheses';
 import { StatusComponent } from '../status/status.component';
 import { HostListener } from '@angular/core';
+import { Criterium } from './criterium.class';
+import { IHypothesis } from '@golab/adaptive-hypotheses';
 
 @Component({
     selector: 'app-coding',
@@ -10,40 +11,45 @@ import { HostListener } from '@angular/core';
     styleUrls: ['./coding.component.css']
 })
 export class CodingComponent implements OnInit {
-
     constructor( private hypothesesService: HypothesesService ) { }
-
-    hypothesis: Hypothesis;
+    hypothesis: IHypothesis;
     criteria: Criterium[];
     @Input() status: StatusComponent;
-    savePending: boolean = true;
-        
+    savePending = true;
+
     @HostListener('window:keydown', ['$event'])
     keyboardInput(event: KeyboardEvent): void {
         // if enter, call saveAndContinue
-        if ( event.key == "Enter" )
+        if ( event.key === 'Enter' ) {
             return this.saveAndContinue();
+        }
 
         // otherwise, loop over our criteria to see if the key matches any criterium.
-        for ( let criterium of this.criteria )
-            if ( event.key === criterium.key )
+        for ( const criterium of this.criteria ) {
+            if ( event.key === criterium.key ) {
                 return criterium.toggle();
-        
+            }
+        }
+
         // well, that was about it...
-        console.log( "No binding for KeyoardEvent;", event );
+        console.log( 'No binding for KeyoardEvent;', event );
     }
 
-    saveAndContinue(){
+    saveAndContinue() {
+        if (this.savePending) {
+            return;
+        }
+
         this.savePending = true;
         this.hypothesesService.update( this.hypothesis, this.criteria, this.status.coder )
             .then( res => {
                 if (res) {
-                    this.getNextHypothesis() // getNext succeeding also clears savePending
+                    this.getNextHypothesis(); // getNext succeeding also clears savePending
                 } else {
-                    console.log( "Something went wrong while saving" )
+                    console.log( 'Something went wrong while saving' );
                 }
             }).catch( err => {
-                console.log( "Something went wrong while saving;", err.message );
+                console.log( 'Something went wrong while saving;', err.message );
             });
     }
 
@@ -55,14 +61,14 @@ export class CodingComponent implements OnInit {
         this.hypothesesService.getHypothesis( this.status.coder ).then( res => {
             this.hypothesis = res;
             setTimeout( () => { this.savePending = false; }, 500 );
-        }); 
+        });
 
-        let manipulationCriterium = new Criterium("manipulation", "r", null, "Manipulation" );
-        let qualifiedCriterium = new Criterium("qualified", "t", null, "Qualified" );
-        let CVSCriterium = new Criterium("CVS", "y" );
-        let SyntaxCriterium = new Criterium("Syntax", "e", [manipulationCriterium,qualifiedCriterium,CVSCriterium]);
-        let VariablesCriterium = new Criterium("VariablesPresent", "q", [SyntaxCriterium], "Variables" );
-        let ModifierCriterium = new Criterium("ModifiersPresent", "w", [SyntaxCriterium], "Modifiers" );
+        const manipulationCriterium = new Criterium('manipulation', 'r', null, 'Manipulation' );
+        const qualifiedCriterium = new Criterium('qualified', 't', null, 'Qualified' );
+        const CVSCriterium = new Criterium('CVS', 'y' );
+        const SyntaxCriterium = new Criterium('Syntax', 'e', [manipulationCriterium, qualifiedCriterium, CVSCriterium]);
+        const VariablesCriterium = new Criterium('VariablesPresent', 'q', [SyntaxCriterium], 'Variables' );
+        const ModifierCriterium = new Criterium('ModifiersPresent', 'w', [manipulationCriterium], 'Modifiers' );
 
         this.criteria = [
             VariablesCriterium,

@@ -1,12 +1,12 @@
 <div class="hypothesis card">
     <div *ngIf="hypothesis" class="hypothesis-text">
-        {{hypothesis.hypothesis}}
+        {{hypothesis.fulltext}}
     </div>
     <div class="">
         <button type="button" class="btn criterium"
             *ngFor="let criterium of criteria" 
-            [ngClass]="{ 'btn-danger': !criterium.result, 'btn-success': criterium.result }"
-            (click)="toggle(criterium)"><span *ngIf="criterium.key">{{criterium.key}}: </span>{{criterium.name}}</button>
+            [ngClass]="{ 'btn-danger': !criterium.success, 'btn-success': criterium.success }"
+            (click)="criterium.toggle()"><span *ngIf="criterium.key">{{criterium.key}}: </span>{{criterium.label}}</button>
         <button type="button" class="btn btn-primary next" 
                 (click)="saveAndContinue()"
                 [disabled]="savePending">

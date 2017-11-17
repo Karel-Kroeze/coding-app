@@ -42,7 +42,7 @@ export class StatusComponent implements OnInit {
   }
 
   percent( total: number, part: number ) {
-      return Math.round( part / total * 100 ) + "%";
+      return Math.round( part / total * 1000 ) / 10 + "%";
   }
 
   ngOnInit() {

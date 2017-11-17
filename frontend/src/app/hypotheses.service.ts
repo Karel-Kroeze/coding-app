@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Hypothesis, Criterium } from './defs/hypotheses';
+import { IHypothesis, ICodeResult } from '@golab/adaptive-hypotheses';
 
 import 'rxjs/add/operator/toPromise';
+import { Criterium } from './coding/criterium.class';
 
 @Injectable()
 export class HypothesesService {
@@ -10,19 +11,23 @@ export class HypothesesService {
 
   apiPath = "api";
 
-  getHypothesis( coder: string ): Promise<Hypothesis>{
+  getHypothesis( coder: string ): Promise<IHypothesis>{
       return this.http
         .get( "api/hypothesis/" + coder )
         .toPromise()
         .then( response => { 
             console.log( "response received", response.json() );
-            return response.json().data as Hypothesis;
+            return response.json().data as IHypothesis;
         }).catch( this.handleError );
   }
 
-  update( hypothesis: Hypothesis, criteria: Criterium[], coder: string): Promise<boolean> {
+  update( hypothesis: IHypothesis, criteria: Criterium[], coder: string): Promise<boolean> {
+      let code: ICodeResult = {
+          coder: coder,
+          results: criteria
+      }
       return this.http
-        .post( "api/code", { hypothesis: hypothesis, criteria: criteria, coder: coder } )
+        .post( "api/code", { hypothesis: hypothesis, code: code } )
         .toPromise()
         .then( response => {
             console.log( "update response received", response.json() );

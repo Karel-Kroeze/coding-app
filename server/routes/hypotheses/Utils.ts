@@ -70,6 +70,7 @@ export async function insertCode( codeRecord: ICodeModel, hypothesisRecord: IHyp
 */
 export async function seed(): Promise<Counts> {
 	return globPromise( "./data/*.json", {} )
+			.then( files => { console.log( files ); return files; })
 			.then( parseFiles )
 			.then( addCounts );
 }

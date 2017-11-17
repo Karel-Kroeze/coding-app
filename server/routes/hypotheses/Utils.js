@@ -82,6 +82,7 @@ exports.insertCode = insertCode;
 function seed() {
     return __awaiter(this, void 0, void 0, function* () {
         return globPromise("./data/*.json", {})
+            .then(files => { console.log(files); return files; })
             .then(parseFiles)
             .then(addCounts);
     });

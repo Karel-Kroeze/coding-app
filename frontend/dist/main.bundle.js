@@ -4,11 +4,7 @@ webpackJsonp(["main"],{
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
+	return new Promise(function(resolve, reject) { reject(new Error("Cannot find module '" + req + "'.")); });
 }
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
@@ -43,77 +39,84 @@ module.exports = "<div class=\"container margin-top\">\n    <!-- provide a refer
 /***/ }),
 
 /***/ "../../../../../src/app/app.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+
 var AppComponent = (function () {
     function AppComponent() {
     }
     return AppComponent;
 }());
 AppComponent = __decorate([
-    core_1.Component({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     })
 ], AppComponent);
-exports.AppComponent = AppComponent;
+
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/app.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__coding_coding_component__ = __webpack_require__("../../../../../src/app/coding/coding.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__hypotheses_service__ = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__status_status_component__ = __webpack_require__("../../../../../src/app/status/status.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
-var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
-var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
-var coding_component_1 = __webpack_require__("../../../../../src/app/coding/coding.component.ts");
-var hypotheses_service_1 = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
-var status_component_1 = __webpack_require__("../../../../../src/app/status/status.component.ts");
+
+
+
+
+
+
+
+
 var AppModule = (function () {
     function AppModule() {
     }
     return AppModule;
 }());
 AppModule = __decorate([
-    core_1.NgModule({
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            app_component_1.AppComponent,
-            coding_component_1.CodingComponent,
-            status_component_1.StatusComponent
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__coding_coding_component__["a" /* CodingComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__status_status_component__["a" /* StatusComponent */]
         ],
         imports: [
-            platform_browser_1.BrowserModule,
-            forms_1.FormsModule,
-            http_1.HttpModule
+            __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* HttpModule */]
         ],
-        providers: [hypotheses_service_1.HypothesesService],
-        bootstrap: [app_component_1.AppComponent]
+        providers: [__WEBPACK_IMPORTED_MODULE_6__hypotheses_service__["a" /* HypothesesService */]],
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
-exports.AppModule = AppModule;
+
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
@@ -126,7 +129,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hypothesis-text {\r\n    font-family: \"Roboto Slab\", serif;\r\n    text-align: center;\r\n    font-size: 36px;\r\n}\r\n\r\n@media (max-width: 600px){\r\n    .hypothesis-text {\r\n        font-size: 6vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 600px){\r\n    .hypothesis-text {\r\n        font-size: 4vw;\r\n    }\r\n}\r\n\r\n\r\n.btn.criterium {\r\n    margin: 10px;\r\n    float: left;\r\n}\r\n\r\n.btn.next {\r\n    margin: 10px;\r\n    float: right;\r\n}", ""]);
+exports.push([module.i, ".hypothesis-text {\r\n    font-family: \"Roboto Slab\", serif;\r\n    text-align: center;\r\n    font-size: 36px;\r\n}\r\n\r\n@media (max-width: 600px){\r\n    .hypothesis-text {\r\n        font-size: 6vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 600px) and (max-width: 1200px){\r\n    .hypothesis-text {\r\n        font-size: 4vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 1200px) and (max-width: 2400px){\r\n    .hypothesis-text {\r\n        font-size: 3vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 2400px ){\r\n    .hypothesis-text{\r\n        font-size: 2vw;\r\n    }\r\n}\r\n\r\n.btn.criterium {\r\n    margin: 10px;\r\n    float: left;\r\n}\r\n\r\n.btn.next {\r\n    margin: 10px;\r\n    float: right;\r\n}", ""]);
 
 // exports
 
@@ -144,10 +147,14 @@ module.exports = "<div class=\"hypothesis card\">\n    <div *ngIf=\"hypothesis\"
 /***/ }),
 
 /***/ "../../../../../src/app/coding/coding.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CodingComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__ = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__status_status_component__ = __webpack_require__("../../../../../src/app/status/status.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__criterium_class__ = __webpack_require__("../../../../../src/app/coding/criterium.class.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -157,12 +164,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var hypotheses_service_1 = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
-var status_component_1 = __webpack_require__("../../../../../src/app/status/status.component.ts");
-var core_2 = __webpack_require__("../../../core/@angular/core.es5.js");
-var criterium_class_1 = __webpack_require__("../../../../../src/app/coding/criterium.class.ts");
+
+
+
+
+
 var CodingComponent = (function () {
     function CodingComponent(hypothesesService) {
         this.hypothesesService = hypothesesService;
@@ -210,54 +216,63 @@ var CodingComponent = (function () {
             _this.hypothesis = res;
             setTimeout(function () { _this.savePending = false; }, 500);
         });
-        var manipulationCriterium = new criterium_class_1.Criterium('manipulation', 'r', null, 'Manipulation');
-        var qualifiedCriterium = new criterium_class_1.Criterium('qualified', 't', null, 'Qualified');
-        var CVSCriterium = new criterium_class_1.Criterium('CVS', 'y');
-        var SyntaxCriterium = new criterium_class_1.Criterium('Syntax', 'e', [manipulationCriterium, qualifiedCriterium, CVSCriterium]);
-        var VariablesCriterium = new criterium_class_1.Criterium('VariablesPresent', 'q', [SyntaxCriterium], 'Variables');
-        var ModifierCriterium = new criterium_class_1.Criterium('ModifiersPresent', 'w', [manipulationCriterium], 'Modifiers');
+        // parser criteria
+        var manipulationCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('manipulation', 'r', null, 'Manipulation');
+        var qualifiedCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('qualified', 't', null, 'Qualified');
+        var CVSCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('CVS', 'y');
+        var SyntaxCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('Syntax', 'e', [manipulationCriterium, qualifiedCriterium, CVSCriterium]);
+        var VariablesCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('VariablesPresent', 'q', [SyntaxCriterium], 'Variables');
+        var ModifierCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('ModifiersPresent', 'w', [manipulationCriterium], 'Modifiers');
+        // quality criteria
+        var specificCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('specific', 'f', null, 'Specific');
+        var testableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('testable', 'd', [specificCriterium], 'Testable');
+        var onTopicCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('on-topic', 's', [testableCriterium], 'On-topic');
+        var understandableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('understandable', 'a', [onTopicCriterium], 'Understandable');
         this.criteria = [
             VariablesCriterium,
             ModifierCriterium,
             SyntaxCriterium,
             manipulationCriterium,
             qualifiedCriterium,
-            CVSCriterium
+            CVSCriterium,
+            understandableCriterium,
+            onTopicCriterium,
+            testableCriterium,
+            specificCriterium
         ];
         this.status.update();
     };
     return CodingComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", typeof (_a = typeof status_component_1.StatusComponent !== "undefined" && status_component_1.StatusComponent) === "function" && _a || Object)
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__status_status_component__["a" /* StatusComponent */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__status_status_component__["a" /* StatusComponent */]) === "function" && _a || Object)
 ], CodingComponent.prototype, "status", void 0);
 __decorate([
-    core_2.HostListener('window:keydown', ['$event']),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* HostListener */])('window:keydown', ['$event']),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], CodingComponent.prototype, "keyboardInput", null);
 CodingComponent = __decorate([
-    core_1.Component({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-coding',
         template: __webpack_require__("../../../../../src/app/coding/coding.component.html"),
         styles: [__webpack_require__("../../../../../src/app/coding/coding.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof hypotheses_service_1.HypothesesService !== "undefined" && hypotheses_service_1.HypothesesService) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__["a" /* HypothesesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__["a" /* HypothesesService */]) === "function" && _b || Object])
 ], CodingComponent);
-exports.CodingComponent = CodingComponent;
+
 var _a, _b;
 //# sourceMappingURL=coding.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/coding/criterium.class.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Criterium; });
 var Criterium = (function () {
     function Criterium(test, key, dependents, descriptiveLabel) {
         this.key = key;
@@ -286,16 +301,20 @@ var Criterium = (function () {
     });
     return Criterium;
 }());
-exports.Criterium = Criterium;
+
 //# sourceMappingURL=criterium.class.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/hypotheses.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HypothesesService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__ = __webpack_require__("../../../../rxjs/add/operator/toPromise.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_toPromise__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -305,10 +324,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
-__webpack_require__("../../../../rxjs/_esm5/add/operator/toPromise.js");
+
+
+
 var HypothesesService = (function () {
     function HypothesesService(http) {
         this.http = http;
@@ -352,10 +370,10 @@ var HypothesesService = (function () {
     return HypothesesService;
 }());
 HypothesesService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object])
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
 ], HypothesesService);
-exports.HypothesesService = HypothesesService;
+
 var _a;
 //# sourceMappingURL=hypotheses.service.js.map
 
@@ -387,10 +405,12 @@ module.exports = "<div class=\"status card\">\n    <div *ngIf=\"status && checke
 /***/ }),
 
 /***/ "../../../../../src/app/status/status.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return StatusComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__ = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -400,9 +420,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var hypotheses_service_1 = __webpack_require__("../../../../../src/app/hypotheses.service.ts");
+
+
 var StatusComponent = (function () {
     function StatusComponent(hypothesesService) {
         this.hypothesesService = hypothesesService;
@@ -470,30 +489,30 @@ var StatusComponent = (function () {
     return StatusComponent;
 }());
 StatusComponent = __decorate([
-    core_1.Component({
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'app-status',
         template: __webpack_require__("../../../../../src/app/status/status.component.html"),
         styles: [__webpack_require__("../../../../../src/app/status/status.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof hypotheses_service_1.HypothesesService !== "undefined" && hypotheses_service_1.HypothesesService) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__["a" /* HypothesesService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__hypotheses_service__["a" /* HypothesesService */]) === "function" && _a || Object])
 ], StatusComponent);
-exports.StatusComponent = StatusComponent;
+
 var _a;
 //# sourceMappingURL=status.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/environments/environment.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.environment = {
+// The file contents for the current environment will overwrite these during build.
+var environment = {
     production: false
 };
 //# sourceMappingURL=environment.js.map
@@ -501,19 +520,22 @@ exports.environment = {
 /***/ }),
 
 /***/ "../../../../../src/main.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("../../../../../src/app/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var platform_browser_dynamic_1 = __webpack_require__("../../../platform-browser-dynamic/@angular/platform-browser-dynamic.es5.js");
-var app_module_1 = __webpack_require__("../../../../../src/app/app.module.ts");
-var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_20" /* enableProdMode */])();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule);
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
 
 /***/ }),

@@ -48,7 +48,7 @@ router.get('/seed', function( req, res, next) {
 router.get('/hypotheses', function( req, res, next ){
 	Story
 	.find({})
-	.sort({numCodes: -1 })
+	.sort( { numCodes: -1 } )
 	.populate([{
 		path: "snapshots",
 		model: "Hypothesis",

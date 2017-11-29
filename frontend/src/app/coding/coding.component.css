@@ -10,12 +10,23 @@
     }
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) and (max-width: 1200px){
     .hypothesis-text {
         font-size: 4vw;
     }
 }
 
+@media (min-width: 1200px) and (max-width: 2400px){
+    .hypothesis-text {
+        font-size: 3vw;
+    }
+}
+
+@media (min-width: 2400px ){
+    .hypothesis-text{
+        font-size: 2vw;
+    }
+}
 
 .btn.criterium {
     margin: 10px;

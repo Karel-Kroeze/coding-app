@@ -63,6 +63,7 @@ export class CodingComponent implements OnInit {
             setTimeout( () => { this.savePending = false; }, 500 );
         });
 
+        // parser criteria
         const manipulationCriterium = new Criterium('manipulation', 'r', null, 'Manipulation' );
         const qualifiedCriterium = new Criterium('qualified', 't', null, 'Qualified' );
         const CVSCriterium = new Criterium('CVS', 'y' );
@@ -70,13 +71,23 @@ export class CodingComponent implements OnInit {
         const VariablesCriterium = new Criterium('VariablesPresent', 'q', [SyntaxCriterium], 'Variables' );
         const ModifierCriterium = new Criterium('ModifiersPresent', 'w', [manipulationCriterium], 'Modifiers' );
 
+        // quality criteria
+        const specificCriterium = new Criterium( 'specific', 'f', null, 'Specific' );
+        const testableCriterium = new Criterium( 'testable', 'd', [specificCriterium], 'Testable' );
+        const onTopicCriterium = new Criterium( 'on-topic', 's', [testableCriterium], 'On-topic' );
+        const understandableCriterium = new Criterium( 'understandable', 'a', [onTopicCriterium], 'Understandable' );
+
         this.criteria = [
             VariablesCriterium,
             ModifierCriterium,
             SyntaxCriterium,
             manipulationCriterium,
             qualifiedCriterium,
-            CVSCriterium
+            CVSCriterium,
+            understandableCriterium,
+            onTopicCriterium,
+            testableCriterium,
+            specificCriterium
         ];
         this.status.update();
     }

@@ -223,23 +223,13 @@ var CodingComponent = (function () {
         var SyntaxCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('Syntax', 'e', [manipulationCriterium, qualifiedCriterium, CVSCriterium]);
         var VariablesCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('VariablesPresent', 'q', [SyntaxCriterium], 'Variables');
         var ModifierCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('ModifiersPresent', 'w', [manipulationCriterium], 'Modifiers');
-        // quality criteria
-        var specificCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('specific', 'f', null, 'Specific');
-        var testableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('testable', 'd', [specificCriterium], 'Testable');
-        var onTopicCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('on-topic', 's', [testableCriterium], 'On-topic');
-        var understandableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('understandable', 'a', [onTopicCriterium], 'Understandable');
-        understandableCriterium.newLine = true;
         this.criteria = [
             VariablesCriterium,
             ModifierCriterium,
             SyntaxCriterium,
             manipulationCriterium,
             qualifiedCriterium,
-            CVSCriterium,
-            understandableCriterium,
-            onTopicCriterium,
-            testableCriterium,
-            specificCriterium
+            CVSCriterium
         ];
         this.status.update();
     };

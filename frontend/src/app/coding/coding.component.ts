@@ -76,6 +76,7 @@ export class CodingComponent implements OnInit {
         const testableCriterium = new Criterium( 'testable', 'd', [specificCriterium], 'Testable' );
         const onTopicCriterium = new Criterium( 'on-topic', 's', [testableCriterium], 'On-topic' );
         const understandableCriterium = new Criterium( 'understandable', 'a', [onTopicCriterium], 'Understandable' );
+        understandableCriterium.newLine = true;
 
         this.criteria = [
             VariablesCriterium,

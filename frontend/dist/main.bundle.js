@@ -129,7 +129,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".hypothesis-text {\r\n    font-family: \"Roboto Slab\", serif;\r\n    text-align: center;\r\n    font-size: 36px;\r\n}\r\n\r\n@media (max-width: 600px){\r\n    .hypothesis-text {\r\n        font-size: 6vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 600px) and (max-width: 1200px){\r\n    .hypothesis-text {\r\n        font-size: 4vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 1200px) and (max-width: 2400px){\r\n    .hypothesis-text {\r\n        font-size: 3vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 2400px ){\r\n    .hypothesis-text{\r\n        font-size: 2vw;\r\n    }\r\n}\r\n\r\n.btn.criterium {\r\n    margin: 10px;\r\n    float: left;\r\n}\r\n\r\n.btn.next {\r\n    margin: 10px;\r\n    float: right;\r\n}", ""]);
+exports.push([module.i, ".hypothesis-text {\r\n    font-family: \"Roboto Slab\", serif;\r\n    text-align: center;\r\n    font-size: 36px;\r\n}\r\n\r\n@media (max-width: 600px){\r\n    .hypothesis-text {\r\n        font-size: 6vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 600px) and (max-width: 1200px){\r\n    .hypothesis-text {\r\n        font-size: 4vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 1200px) and (max-width: 2400px){\r\n    .hypothesis-text {\r\n        font-size: 3vw;\r\n    }\r\n}\r\n\r\n@media (min-width: 2400px ){\r\n    .hypothesis-text{\r\n        font-size: 2vw;\r\n    }\r\n}\r\n\r\n.btn.criterium {\r\n    margin: 10px;\r\n}\r\n\r\n.btn.next {\r\n    margin: 10px;\r\n    float: right\r\n}\r\n\r\n.line-break:before {\r\n    content: \"\";\r\n    display: block;\r\n}", ""]);
 
 // exports
 
@@ -142,7 +142,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/coding/coding.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hypothesis card\">\n    <div *ngIf=\"hypothesis\" class=\"hypothesis-text\">\n        {{hypothesis.fulltext}}\n    </div>\n    <div class=\"\">\n        <button type=\"button\" class=\"btn criterium\"\n            *ngFor=\"let criterium of criteria\" \n            [ngClass]=\"{ 'btn-danger': !criterium.success, 'btn-success': criterium.success }\"\n            (click)=\"criterium.toggle()\"><span *ngIf=\"criterium.key\">{{criterium.key}}: </span>{{criterium.label}}</button>\n        <button type=\"button\" class=\"btn btn-primary next\" \n                (click)=\"saveAndContinue()\"\n                [disabled]=\"savePending\">\n                    <i *ngIf=\"savePending\" class=\"fa fa-spinner fa-pulse fa-fw\"></i>\n                    Save\n                </button>\n    </div>\n</div>"
+module.exports = "<div class=\"hypothesis card\">\n    <div *ngIf=\"hypothesis\" class=\"hypothesis-text\">\n        {{hypothesis.fulltext}}\n    </div>\n    <div class=\"criteria-row\">\n        <ng-container *ngFor=\"let criterium of criteria\">\n            <br *ngIf=\"criterium.newLine\" />\n            <button type=\"button\" class=\"btn criterium\"\n                [ngClass]=\"{ 'btn-danger': !criterium.success, 'btn-success': criterium.success}\"\n                (click)=\"criterium.toggle()\"\n                [title]=\"criterium.description\"><span *ngIf=\"criterium.key\">{{criterium.key}}: </span>{{criterium.label}}</button>\n        </ng-container>\n            <button type=\"button\" class=\"btn btn-primary next\" \n                (click)=\"saveAndContinue()\"\n                [disabled]=\"savePending\">\n                <i *ngIf=\"savePending\" class=\"fa fa-spinner fa-pulse fa-fw\"></i>\n                Save\n            </button>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -228,6 +228,7 @@ var CodingComponent = (function () {
         var testableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('testable', 'd', [specificCriterium], 'Testable');
         var onTopicCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('on-topic', 's', [testableCriterium], 'On-topic');
         var understandableCriterium = new __WEBPACK_IMPORTED_MODULE_3__criterium_class__["a" /* Criterium */]('understandable', 'a', [onTopicCriterium], 'Understandable');
+        understandableCriterium.newLine = true;
         this.criteria = [
             VariablesCriterium,
             ModifierCriterium,
@@ -268,18 +269,43 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/coding/criteria-descriptions.json.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    "VariablesPresent": "Are at least two variables present in the hypothesis?",
+    "ModifiersPresent": "Is at least one modifier (e.g. 'increases', 'decreases', but NOT 'remains the same') present in the hypothesis?",
+    "Syntax": "Is the hypothesis understandable? Minor mistakes and word repetitions can be ignored, as long as the intent of the student is clear.",
+    "manipulation": "Does the tested relationship involve a manipulation? (i.e. is the student purposefully manipulating one variable to measure the effect on another?)",
+    "CVS": "Does the hypothesis adhere to CVS? (i.e. vary only one variable at a time?)",
+    "qualified": "Is the hypothesis fully qualified? (i.e. are the conditions under which the hypothesis is tested made explicit - e.g. in a series/parallel circuit).",
+    "understandable": "Is the hypothesis understandable? Minor mistakes and word repetitions can be ignored, as long as the intent of the student is clear.",
+    "on-topic": "Is the hypothesis on topic? (i.e. about the differences between series and parallel circuits?)",
+    "testable": "Is the hypothesis testable? (e.g. can the variables involved be manipulated, controlled and measured?)",
+    "specific": "Does the hypothesis state a clear and specific test and expected outcome?"
+});
+//# sourceMappingURL=criteria-descriptions.json.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/coding/criterium.class.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Criterium; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__criteria_descriptions_json__ = __webpack_require__("../../../../../src/app/coding/criteria-descriptions.json.ts");
+
 var Criterium = (function () {
     function Criterium(test, key, dependents, descriptiveLabel) {
         this.key = key;
         this.dependents = dependents;
         this.descriptiveLabel = descriptiveLabel;
+        this.newLine = false;
         this.success = true;
         this.test = test;
+        this._description = __WEBPACK_IMPORTED_MODULE_0__criteria_descriptions_json__["a" /* default */][test] || test;
+        console.log(__WEBPACK_IMPORTED_MODULE_0__criteria_descriptions_json__["a" /* default */], test, this.description);
     }
     Criterium.prototype.toggle = function (success) {
         if (typeof success !== "undefined")
@@ -295,6 +321,13 @@ var Criterium = (function () {
     Object.defineProperty(Criterium.prototype, "label", {
         get: function () {
             return this.descriptiveLabel || this.test;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Criterium.prototype, "description", {
+        get: function () {
+            return this._description;
         },
         enumerable: true,
         configurable: true

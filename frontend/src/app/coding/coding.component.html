@@ -2,16 +2,19 @@
     <div *ngIf="hypothesis" class="hypothesis-text">
         {{hypothesis.fulltext}}
     </div>
-    <div class="">
-        <button type="button" class="btn criterium"
-            *ngFor="let criterium of criteria" 
-            [ngClass]="{ 'btn-danger': !criterium.success, 'btn-success': criterium.success }"
-            (click)="criterium.toggle()"><span *ngIf="criterium.key">{{criterium.key}}: </span>{{criterium.label}}</button>
-        <button type="button" class="btn btn-primary next" 
+    <div class="criteria-row">
+        <ng-container *ngFor="let criterium of criteria">
+            <br *ngIf="criterium.newLine" />
+            <button type="button" class="btn criterium"
+                [ngClass]="{ 'btn-danger': !criterium.success, 'btn-success': criterium.success}"
+                (click)="criterium.toggle()"
+                [title]="criterium.description"><span *ngIf="criterium.key">{{criterium.key}}: </span>{{criterium.label}}</button>
+        </ng-container>
+            <button type="button" class="btn btn-primary next" 
                 (click)="saveAndContinue()"
                 [disabled]="savePending">
-                    <i *ngIf="savePending" class="fa fa-spinner fa-pulse fa-fw"></i>
-                    Save
-                </button>
+                <i *ngIf="savePending" class="fa fa-spinner fa-pulse fa-fw"></i>
+                Save
+            </button>
     </div>
 </div>

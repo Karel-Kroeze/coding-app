@@ -6,26 +6,29 @@ export class Criterium implements ICriteriumResult {
     success: boolean;
     error?: ICriteriumError;
     result?: any;
-    newLine: boolean = false;
+    newLine = false;
     private _description: string;
-    
-    constructor( test: string, public key: string, private dependents?: Criterium[], private descriptiveLabel?: string ){
+
+    constructor( test: string, public key: string, private dependents?: Criterium[], private descriptiveLabel?: string ) {
         this.success = true;
         this.test = test;
         this._description = DESCRIPTIONS[test] || test;
 
         console.log( DESCRIPTIONS, test, this.description );
-    }    
+    }
 
     toggle( success?: boolean ): void {
-        if ( typeof success !== "undefined" )
+        if ( typeof success !== 'undefined' ) {
             this.success = success;
-        else 
+        } else {
             this.success = !this.success;
+        }
 
-        if (!this.success && this.dependents)
-            for ( let dependent of this.dependents )
+        if (!this.success && this.dependents) {
+            for ( const dependent of this.dependents ) {
                 dependent.toggle( false );
+            }
+        }
     }
 
     get label(){
@@ -34,5 +37,5 @@ export class Criterium implements ICriteriumResult {
 
     get description(){
         return this._description;
-    }    
+    }
 }

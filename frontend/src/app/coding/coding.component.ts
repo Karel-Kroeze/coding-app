@@ -16,6 +16,7 @@ export class CodingComponent implements OnInit {
     criteria: Criterium[];
     @Input() status: StatusComponent;
     savePending = true;
+    showHelp = true;
 
     @HostListener('window:keydown', ['$event'])
     keyboardInput(event: KeyboardEvent): void {
@@ -33,6 +34,10 @@ export class CodingComponent implements OnInit {
 
         // well, that was about it...
         console.log( 'No binding for KeyoardEvent;', event );
+    }
+
+    toggleHelp(){
+        this.showHelp = !this.showHelp;
     }
 
     saveAndContinue() {

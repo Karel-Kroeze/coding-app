@@ -11,7 +11,7 @@
     "@types/express": "^4.0.39",
     "@types/glob": "^5.0.33",
     "@types/lodash": "^4.14.85",
-    "@types/mongoose": "^4.7.27",
+    "@types/mongoose": "^4.7.29",
     "@types/mz": "0.0.32",
     "@types/node": "^8.0.51",
     "body-parser": "~1.16.0",
@@ -21,7 +21,7 @@
     "glob": "^7.1.2",
     "jade": "~1.11.0",
     "lodash": "^4.17.4",
-    "mongoose": "^4.13.2",
+    "mongoose": "^4.13.7",
     "morgan": "~1.7.0",
     "mz": "^2.6.0",
     "nodemon": "^1.11.0",
@@ -29,6 +29,7 @@
     "typescript": "^2.6.1"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.1"
+    "@types/cookie-parser": "^1.4.1",
+    "@types/morgan": "^1.7.35"
   }
 }

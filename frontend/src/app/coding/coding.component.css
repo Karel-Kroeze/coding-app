@@ -28,15 +28,6 @@
     }
 }
 
-.btn.criterium {
-    margin: 10px;
-}
-
-.btn.next {
-    margin: 10px;
-    float: right
-}
-
 .line-break:before {
     content: "";
     display: block;

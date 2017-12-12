@@ -7,7 +7,7 @@ networks:
 
 services:
   mongo:
-    image: mongo
+    image: mongo:3.4  # latest (>3.6) removes deprecated $pushAll, breaking mongoose.
     # volumes:
     #   - './data/db:/data/db'
     networks:

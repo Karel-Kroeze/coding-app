@@ -65,6 +65,9 @@ export class CodingComponent implements OnInit {
     getNextHypothesis(): void {
         this.hypothesesService.getHypothesis( this.status.coder ).then( res => {
             this.hypothesis = res;
+            if (this.status.coder === "DEBUG:EMPTY"){
+                (<any>this.hypothesis).fulltext = "";
+            }
             setTimeout( () => { this.savePending = false; }, 500 );
         });
 

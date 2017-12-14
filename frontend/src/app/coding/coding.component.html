@@ -20,6 +20,7 @@
         <p *ngFor="let criterium of criteria"><strong>{{criterium.label}}</strong><br/>{{criterium.description}}</p>
     </div>
     <div *ngIf="hypothesis" class="hypothesis-text">
+        <div *ngIf="!hypothesis.fulltext" class="alert alert-warning">empty hypothesis</div>
         {{hypothesis.fulltext}}
     </div>
     <div class="criteria-row">

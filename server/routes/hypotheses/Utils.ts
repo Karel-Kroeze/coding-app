@@ -112,6 +112,8 @@ async function parseHypotheses( data: {[id: string]: IHypothesisStory} ): Promis
 async function createStoryRecord( story: IHypothesisStory ): Promise<IStoryModel> {
 	let queue = Promise.resolve();
 	let storyRecord = new Story( story );
+
+	storyRecord.actor = story.actor;
 	storyRecord.updates = [];
 	storyRecord.snapshots = [];
 	

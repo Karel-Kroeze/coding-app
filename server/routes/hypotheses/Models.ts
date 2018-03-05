@@ -19,11 +19,17 @@ mongoose.connect(`mongodb://mongo/${mongoCollection}`);
 (<any>mongoose).Promise = global.Promise;
 
 let storySchema = new mongoose.Schema({
+	actor: {
+		id: String,
+		displayName: String
+	},
 	snapshots: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Hypothesis' }],
 	updates: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Hypothesis' }]
 })
 
 let hypothesisSchema = new mongoose.Schema({
+	id: String,
+
 	// IHypothesis
 	approved: Boolean,
 	tested: Boolean,

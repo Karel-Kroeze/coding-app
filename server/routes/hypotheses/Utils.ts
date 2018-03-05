@@ -151,8 +151,10 @@ async function createCodeRecord( code: ICodeResult ): Promise<ICodeModel> {
 	let codeRecord = new Code( code );
 	codeRecord.results = [];
 	
-	for ( let criterium of code.results ){
-		codeRecord.results.push( await new Criterium( criterium ).save() );
+	if (code.results){
+		for ( let criterium of code.results ){
+			codeRecord.results.push( await new Criterium( criterium ).save() );
+		}
 	}
 	
 	return codeRecord.save();

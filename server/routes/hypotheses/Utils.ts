@@ -101,16 +101,20 @@ function addCounts( counts: Counts[] ): Counts {
 
 async function parseHypotheses( data: {[id: string]: IHypothesisStory} ): Promise<Counts> {
 	let counts: Counts = {};
-	return await Promise.all( Object.keys( data ).map( id => createStoryRecord( data[id] ) ) )
+	try {
+		return await Promise.all( Object.keys( data ).map( id => createStoryRecord( data[id] ) ) )
 		.then( (stories) => { return {
 			stories: stories.length,
 			updates: stories.map( story => story.updates.length ).reduce( (a, b) => a + b ),
 			snapshots: stories.map( story => story.snapshots.length ).reduce( (a, b) => a + b )
 		}});
+	} catch ( e ){
+		console.error( e );
+		throw( e );
+	}
 }
 
 async function createStoryRecord( story: IHypothesisStory ): Promise<IStoryModel> {
-	let queue = Promise.resolve();
 	let storyRecord = new Story( story );
 
 	storyRecord.actor = story.actor;

@@ -116,20 +116,26 @@ function addCounts(counts) {
 function parseHypotheses(data) {
     return __awaiter(this, void 0, void 0, function* () {
         let counts = {};
-        return yield Promise.all(Object.keys(data).map(id => createStoryRecord(data[id])))
-            .then((stories) => {
-            return {
-                stories: stories.length,
-                updates: stories.map(story => story.updates.length).reduce((a, b) => a + b),
-                snapshots: stories.map(story => story.snapshots.length).reduce((a, b) => a + b)
-            };
-        });
+        try {
+            return yield Promise.all(Object.keys(data).map(id => createStoryRecord(data[id])))
+                .then((stories) => {
+                return {
+                    stories: stories.length,
+                    updates: stories.map(story => story.updates.length).reduce((a, b) => a + b),
+                    snapshots: stories.map(story => story.snapshots.length).reduce((a, b) => a + b)
+                };
+            });
+        }
+        catch (e) {
+            console.error(e);
+            throw (e);
+        }
     });
 }
 function createStoryRecord(story) {
     return __awaiter(this, void 0, void 0, function* () {
-        let queue = Promise.resolve();
         let storyRecord = new Models_1.Story(story);
+        storyRecord.actor = story.actor;
         storyRecord.updates = [];
         storyRecord.snapshots = [];
         // if (story.updates){

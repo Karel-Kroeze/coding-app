@@ -165,7 +165,8 @@ function createCodeRecord(code) {
     return __awaiter(this, void 0, void 0, function* () {
         let codeRecord = new Models_1.Code(code);
         codeRecord.results = [];
-        for (let criterium of code.results) {
+        let results = code.results ? code.results : code;
+        for (let criterium of results) {
             codeRecord.results.push(yield new Models_1.Criterium(criterium).save());
         }
         return codeRecord.save();
